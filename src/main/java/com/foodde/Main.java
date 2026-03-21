@@ -22,6 +22,20 @@ public class Main {
             res2.getMenu().add(new com.foodde.model.MenuItem("m3", "Pepperoni Pizza", 12.99, "Classic pepperoni pizza"));
             res2.getMenu().add(new com.foodde.model.MenuItem("m4", "Cheesy Garlic Bread", 5.50, "Freshly baked garlic bread"));
             repository.saveRestaurant(res2);
+        } else {
+            // Ensure restaurants have menus if they were created empty previously
+            for (Restaurant res : repository.getAllRestaurants()) {
+                if (res.getMenu().isEmpty()) {
+                    if (res.getName().equals("Burger King")) {
+                        res.getMenu().add(new com.foodde.model.MenuItem("m1", "Whopper", 5.99, "Flame-grilled beef patty"));
+                        res.getMenu().add(new com.foodde.model.MenuItem("m2", "Chicken Fries", 4.49, "9pc Crispy chicken fries"));
+                    } else if (res.getName().equals("Pizza Hut")) {
+                        res.getMenu().add(new com.foodde.model.MenuItem("m3", "Pepperoni Pizza", 12.99, "Classic pepperoni pizza"));
+                        res.getMenu().add(new com.foodde.model.MenuItem("m4", "Cheesy Garlic Bread", 5.50, "Freshly baked garlic bread"));
+                    }
+                    repository.saveRestaurant(res);
+                }
+            }
         }
 
         Javalin app = Javalin.create(config -> {
