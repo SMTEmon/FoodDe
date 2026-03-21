@@ -8,6 +8,9 @@
 <body>
     <header>
         <h1><a href="/" style="color: white; text-decoration: none;">FooDDe</a></h1>
+        <div style="text-align: right; padding-right: 20px; margin-top: -35px;">
+            <a href="/cart" style="color: white; text-decoration: none; background: #27ae60; padding: 5px 15px; border-radius: 4px;">View Cart</a>
+        </div>
     </header>
 
     <main>
@@ -26,7 +29,11 @@
                 </div>
                 <div class="price-action">
                     <span th:text="'$' + ${item.price}">$0.00</span>
-                    <button class="add-btn">Add to Cart</button>
+                    <form action="/cart/add" method="POST">
+                        <input type="hidden" name="restaurantId" th:value="${restaurant.id}">
+                        <input type="hidden" name="menuItemId" th:value="${item.id}">
+                        <button type="submit" class="add-btn">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         </div>

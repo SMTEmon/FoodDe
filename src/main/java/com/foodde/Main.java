@@ -63,6 +63,11 @@ public class Main {
         app.post("/login", userController::login);
         app.post("/checkout", cartController::placeOrder);
 
+        // SOAP / WSDL API Requirement
+        com.foodde.service.RestaurantSoapService.setRepository(repository);
+        jakarta.xml.ws.Endpoint.publish("http://localhost:8081/services/restaurant", new com.foodde.service.RestaurantSoapService());
+
         System.out.println("Server started at http://localhost:7070");
+        System.out.println("WSDL API available at http://localhost:8081/services/restaurant?wsdl");
     }
 }
