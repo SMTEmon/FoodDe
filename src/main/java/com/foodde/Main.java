@@ -47,6 +47,7 @@ public class Main {
         var restaurantController = new com.foodde.controller.RestaurantController(repository);
         var cartController = new com.foodde.controller.CartController(repository);
         var userController = new com.foodde.controller.UserController();
+        var adminController = new com.foodde.controller.AdminController(repository);
 
         // Home Page Route
         app.get("/", restaurantController::listAll);
@@ -62,6 +63,11 @@ public class Main {
         app.get("/login", userController::showLogin);
         app.post("/login", userController::login);
         app.post("/checkout", cartController::placeOrder);
+
+        // Admin Routes
+        app.get("/admin", adminController::dashboard);
+        app.post("/admin/restaurant/add", adminController::addRestaurant);
+        app.post("/admin/menu/add", adminController::addMenuItem);
 
         // SOAP / WSDL API Requirement
         com.foodde.service.RestaurantSoapService.setRepository(repository);
