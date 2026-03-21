@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.restaurant-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.restaurant-card {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 250px;
+}
+
+.restaurant-card h3 {
+    margin-top: 0;
+}
+
+.restaurant-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #e8491d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
