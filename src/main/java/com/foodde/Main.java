@@ -45,12 +45,17 @@ public class Main {
 
         // Controllers
         var restaurantController = new com.foodde.controller.RestaurantController(repository);
+        var cartController = new com.foodde.controller.CartController(repository);
 
         // Home Page Route
         app.get("/", restaurantController::listAll);
         
         // Restaurant Detail Route
         app.get("/restaurant/{id}", restaurantController::detail);
+
+        // Cart Routes
+        app.post("/cart/add", cartController::addToCart);
+        app.get("/cart", cartController::viewCart);
 
         System.out.println("Server started at http://localhost:7070");
     }
