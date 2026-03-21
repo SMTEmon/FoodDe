@@ -75,4 +75,31 @@ public class CartController {
         Order order = getSessionOrder(ctx);
         ctx.render("templates/cart.html", Map.of("order", order));
     }
+
+    // Process checkout
+    public void placeOrder(Context ctx) {
+        com.foodde.model.User user = ctx.sessionAttribute("user");
+        
+        // Redirect to login if not logged in
+        if (user == null) {
+            ctx.redirect("/login");
+            return;
+        }
+
+        Order order = getSessionOrder(ctx);
+        if (order.getItems().isEmpty()) {
+            ctx.redirect("/");
+            return;
+        }
+
+        // Finalize order
+        order.setUserId(user.getId());
+        order.setStatus("Preparing");
+        repository.saveOrder(order);
+
+        // Clear cart session
+        ctx.sessionAttribute("cart", null);
+
+        ctx.render("templates/order-success.html", Map.of("order", order));
+    }
 }

@@ -45,7 +45,9 @@
 
             <div style="margin-top: 20px; text-align: right;">
                 <a href="/" style="background: #35424a; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Add More Food</a>
-                <button style="background: #e8491d; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-size: 1em; cursor: pointer; margin-left: 10px;">Place Order</button>
+                <form action="/checkout" method="POST" style="display: inline-block;">
+                    <button type="submit" style="background: #e8491d; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-size: 1em; cursor: pointer; margin-left: 10px;">Place Order</button>
+                </form>
             </div>
         </div>
     </main>

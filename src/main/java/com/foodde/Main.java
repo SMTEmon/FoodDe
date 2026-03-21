@@ -46,6 +46,7 @@ public class Main {
         // Controllers
         var restaurantController = new com.foodde.controller.RestaurantController(repository);
         var cartController = new com.foodde.controller.CartController(repository);
+        var userController = new com.foodde.controller.UserController();
 
         // Home Page Route
         app.get("/", restaurantController::listAll);
@@ -56,6 +57,11 @@ public class Main {
         // Cart Routes
         app.post("/cart/add", cartController::addToCart);
         app.get("/cart", cartController::viewCart);
+
+        // User & Checkout Routes
+        app.get("/login", userController::showLogin);
+        app.post("/login", userController::login);
+        app.post("/checkout", cartController::placeOrder);
 
         System.out.println("Server started at http://localhost:7070");
     }
