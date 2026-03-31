@@ -28,7 +28,13 @@ public class Order {
     private double totalAmount;
     
     @XmlElement
-    private String status; // e.g., "Pending", "Preparing", "Delivering", "Delivered"
+    private double discountAmount = 0;
+    
+    @XmlElement
+    private String couponCode;
+    
+    @XmlElement
+    private String status; // "Pending", "Preparing", "Delivering", "Delivered"
 
     public Order() {}
 
@@ -43,6 +49,27 @@ public class Order {
         this.totalAmount = items.stream()
                 .mapToDouble(OrderItem::getSubtotal)
                 .sum();
+        // Apply discount if coupon code is set
+        this.totalAmount -= discountAmount;
+        if (this.totalAmount < 0) this.totalAmount = 0;
+    }
+    
+    // Apply coupon: valid codes give fixed/percentage discounts
+    public void applyCoupon(String code) {
+        this.couponCode = code;
+        this.discountAmount = 0;
+        
+        if ("SAVE10".equalsIgnoreCase(code)) {
+            this.discountAmount = 10;
+        } else if ("SAVE20".equalsIgnoreCase(code)) {
+            this.discountAmount = 20;
+        } else if ("HALF".equalsIgnoreCase(code)) {
+            // Calculate subtotal before discount
+            double subtotal = items.stream().mapToDouble(OrderItem::getSubtotal).sum();
+            this.discountAmount = subtotal * 0.5;
+        }
+        
+        calculateTotal();
     }
 
     // Getters and Setters
@@ -63,4 +90,10 @@ public class Order {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+    
+    public double getDiscountAmount() { return discountAmount; }
+    public void setDiscountAmount(double discountAmount) { this.discountAmount = discountAmount; }
+    
+    public String getCouponCode() { return couponCode; }
+    public void setCouponCode(String couponCode) { this.couponCode = couponCode; }
 }

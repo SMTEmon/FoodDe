@@ -23,7 +23,6 @@ public class MenuItem {
     @XmlElement
     private boolean available;
 
-    // Default constructor is REQUIRED for XML libraries
     public MenuItem() {}
 
     public MenuItem(String id, String name, double price, String description) {

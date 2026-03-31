@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <id>25854982-5a1f-46be-b4ed-7c29b584f1a3</id>
+    <userId>5b4f2608-46cc-4368-907d-247bfd0e911d</userId>
+    <restaurantId>2</restaurantId>
+    <items>
+        <item>
+            <menuItem>
+                <id>m3</id>
+                <name>Pepperoni Pizza</name>
+                <price>12.99</price>
+                <description>Classic pepperoni pizza</description>
+                <available>true</available>
+            </menuItem>
+            <quantity>1</quantity>
+        </item>
+    </items>
+    <totalAmount>12.99</totalAmount>
+    <status>Preparing</status>
+</order>

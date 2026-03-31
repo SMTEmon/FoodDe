@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <id>eb8e8f42-8204-4ce4-9afc-306d912ea49d</id>
+    <userId>5b4f2608-46cc-4368-907d-247bfd0e911d</userId>
+    <restaurantId>6d55677b</restaurantId>
+    <items>
+        <item>
+            <menuItem>
+                <id>m2</id>
+                <name>Sauce</name>
+                <price>1.0</price>
+                <description>Chillllii</description>
+                <available>true</available>
+            </menuItem>
+            <quantity>1</quantity>
+        </item>
+        <item>
+            <menuItem>
+                <id>m1</id>
+                <name>Chicken</name>
+                <price>99.0</price>
+                <description>Chicken Duh</description>
+                <available>true</available>
+            </menuItem>
+            <quantity>1</quantity>
+        </item>
+    </items>
+    <totalAmount>100.0</totalAmount>
+    <status>Preparing</status>
+</order>

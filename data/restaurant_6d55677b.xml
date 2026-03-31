@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restaurant>
+    <id>6d55677b</id>
+    <name>KFC</name>
+    <address>123</address>
+    <schedule>9-10</schedule>
+    <menu>
+        <item>
+            <id>m1</id>
+            <name>Chicken</name>
+            <price>99.0</price>
+            <description>Chicken Duh</description>
+            <available>true</available>
+        </item>
+        <item>
+            <id>m2</id>
+            <name>Sauce</name>
+            <price>1.0</price>
+            <description>Chillllii</description>
+            <available>true</available>
+        </item>
+    </menu>
+</restaurant>

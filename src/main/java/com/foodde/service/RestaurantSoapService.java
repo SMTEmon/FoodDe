@@ -30,4 +30,9 @@ public class RestaurantSoapService {
     public List<Restaurant> getAllRestaurants() {
         return repository.getAllRestaurants();
     }
+
+    @WebMethod(operationName = "getRestaurantById")
+    public Restaurant getRestaurantById(@WebParam(name = "id") String id) {
+        return repository.getRestaurantById(id);
+    }
 }

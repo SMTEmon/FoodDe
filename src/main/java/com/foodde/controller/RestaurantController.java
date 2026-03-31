@@ -3,6 +3,7 @@ package com.foodde.controller;
 import com.foodde.repository.StorageRepository;
 import io.javalin.http.Context;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RestaurantController {
     private final StorageRepository repository;
@@ -12,8 +13,22 @@ public class RestaurantController {
     }
 
     public void listAll(Context ctx) {
+        String searchQuery = ctx.queryParam("search");
         var restaurants = repository.getAllRestaurants();
-        ctx.render("templates/index.html", Map.of("restaurants", restaurants));
+        
+        // Filter by restaurant name or address if search query provided
+        if (searchQuery != null && !searchQuery.trim().isEmpty()) {
+            String query = searchQuery.toLowerCase();
+            restaurants = restaurants.stream()
+                    .filter(r -> r.getName().toLowerCase().contains(query) ||
+                               r.getAddress().toLowerCase().contains(query))
+                    .collect(Collectors.toList());
+        }
+        
+        ctx.render("templates/index.html", Map.of(
+                "restaurants", restaurants,
+                "searchQuery", searchQuery != null ? searchQuery : ""
+        ));
     }
 
     public void detail(Context ctx) {

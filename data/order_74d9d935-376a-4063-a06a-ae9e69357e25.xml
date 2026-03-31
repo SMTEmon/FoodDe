@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <id>74d9d935-376a-4063-a06a-ae9e69357e25</id>
+    <userId>fad16b2a-20c3-4de8-b453-02b667d2f521</userId>
+    <restaurantId>1</restaurantId>
+    <items>
+        <item>
+            <menuItem>
+                <id>m2</id>
+                <name>Chicken Fries</name>
+                <price>4.49</price>
+                <description>9pc Crispy chicken fries</description>
+                <available>true</available>
+            </menuItem>
+            <quantity>1</quantity>
+        </item>
+        <item>
+            <menuItem>
+                <id>m1</id>
+                <name>Whopper</name>
+                <price>5.99</price>
+                <description>Flame-grilled beef patty</description>
+                <available>true</available>
+            </menuItem>
+            <quantity>1</quantity>
+        </item>
+    </items>
+    <totalAmount>10.48</totalAmount>
+    <status>Preparing</status>
+</order>

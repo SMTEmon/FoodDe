@@ -36,12 +36,27 @@
                     </tr>
                 </tbody>
                 <tfoot>
+                    <tr th:if="${order.discountAmount > 0}" style="border-bottom: 1px solid #eee;">
+                        <td colspan="3" style="padding: 15px; text-align: right; font-weight: bold;">Discount:</td>
+                        <td th:text="'-$' + ${order.discountAmount}" style="padding: 15px; text-align: right; font-weight: bold; color: #27ae60;">-$0.00</td>
+                    </tr>
                     <tr>
                         <td colspan="3" style="padding: 20px; text-align: right; font-weight: bold; font-size: 1.2em;">Total:</td>
                         <td th:text="'$' + ${order.totalAmount}" style="padding: 20px; text-align: right; font-weight: bold; font-size: 1.2em; color: #e8491d;">$0.00</td>
                     </tr>
                 </tfoot>
             </table>
+
+            <!-- Coupon Section -->
+            <div style="background: #f5f5f5; padding: 20px; margin-top: 20px; border-radius: 8px;">
+                <h3>Apply Coupon Code</h3>
+                <p style="font-size: 0.9em; color: #666;">Try: SAVE10, SAVE20, or HALF</p>
+                <form action="/cart/coupon" method="POST" style="display: flex; gap: 10px;">
+                    <input type="text" name="couponCode" placeholder="Enter coupon code" 
+                           style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+                    <button type="submit" style="background: #35424a; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Apply</button>
+                </form>
+            </div>
 
             <div style="margin-top: 20px; text-align: right;">
                 <a href="/" style="background: #35424a; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Add More Food</a>

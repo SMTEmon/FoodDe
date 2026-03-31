@@ -19,7 +19,6 @@ public class CartController {
     private Order getSessionOrder(Context ctx) {
         Order order = ctx.sessionAttribute("cart");
         if (order == null) {
-            // Temporary ID/User placeholder
             order = new Order(UUID.randomUUID().toString(), "guest", null);
             ctx.sessionAttribute("cart", order);
         }
@@ -36,7 +35,6 @@ public class CartController {
             return;
         }
 
-        // Find menu item
         MenuItem item = restaurant.getMenu().stream()
                 .filter(m -> m.getId().equals(menuItemId))
                 .findFirst()
@@ -67,7 +65,6 @@ public class CartController {
             order.calculateTotal();
         }
 
-        // Redirect back to restaurant page
         ctx.redirect("/restaurant/" + restaurantId);
     }
 
@@ -75,12 +72,23 @@ public class CartController {
         Order order = getSessionOrder(ctx);
         ctx.render("templates/cart.html", Map.of("order", order));
     }
+    
+    // Apply coupon code to cart
+    public void applyCoupon(Context ctx) {
+        String couponCode = ctx.formParam("couponCode");
+        Order order = getSessionOrder(ctx);
+        
+        if (couponCode != null && !couponCode.trim().isEmpty()) {
+            order.applyCoupon(couponCode);
+        }
+        
+        ctx.redirect("/cart");
+    }
 
     // Process checkout
     public void placeOrder(Context ctx) {
         com.foodde.model.User user = ctx.sessionAttribute("user");
         
-        // Redirect to login if not logged in
         if (user == null) {
             ctx.redirect("/login");
             return;
@@ -97,9 +105,7 @@ public class CartController {
         order.setStatus("Preparing");
         repository.saveOrder(order);
 
-        // Clear cart session
         ctx.sessionAttribute("cart", null);
-
         ctx.render("templates/order-success.html", Map.of("order", order));
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <id>644c372c-52a1-4480-8d09-c14479878650</id>
+    <userId>04e3c9cf-82fe-4314-a8ab-6d97ab781685</userId>
+    <restaurantId>6d55677b</restaurantId>
+    <items>
+        <item>
+            <menuItem>
+                <id>m1</id>
+                <name>Chicken</name>
+                <price>99.0</price>
+                <description>Chicken Duh</description>
+                <available>true</available>
+            </menuItem>
+            <quantity>1</quantity>
+        </item>
+    </items>
+    <totalAmount>49.5</totalAmount>
+    <discountAmount>49.5</discountAmount>
+    <couponCode>HALF</couponCode>
+    <status>Preparing</status>
+</order>

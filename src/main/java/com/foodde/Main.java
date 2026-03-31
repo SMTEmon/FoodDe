@@ -11,7 +11,6 @@ public class Main {
     public static void main(String[] args) {
         StorageRepository repository = new XmlRepository();
 
-        // Initialize some sample data if the repository is empty
         if (repository.getAllRestaurants().isEmpty()) {
             Restaurant res1 = new Restaurant("1", "Burger King", "123 Main St", "9:00 AM - 10:00 PM");
             res1.getMenu().add(new com.foodde.model.MenuItem("m1", "Whopper", 5.99, "Flame-grilled beef patty"));
@@ -23,7 +22,6 @@ public class Main {
             res2.getMenu().add(new com.foodde.model.MenuItem("m4", "Cheesy Garlic Bread", 5.50, "Freshly baked garlic bread"));
             repository.saveRestaurant(res2);
         } else {
-            // Ensure restaurants have menus if they were created empty previously
             for (Restaurant res : repository.getAllRestaurants()) {
                 if (res.getMenu().isEmpty()) {
                     if (res.getName().equals("Burger King")) {
@@ -48,6 +46,7 @@ public class Main {
         var cartController = new com.foodde.controller.CartController(repository);
         var userController = new com.foodde.controller.UserController();
         var adminController = new com.foodde.controller.AdminController(repository);
+        var orderTrackingController = new com.foodde.controller.OrderTrackingController(repository);
 
         // Home Page Route
         app.get("/", restaurantController::listAll);
@@ -58,11 +57,15 @@ public class Main {
         // Cart Routes
         app.post("/cart/add", cartController::addToCart);
         app.get("/cart", cartController::viewCart);
+        app.post("/cart/coupon", cartController::applyCoupon);
 
         // User & Checkout Routes
         app.get("/login", userController::showLogin);
         app.post("/login", userController::login);
         app.post("/checkout", cartController::placeOrder);
+
+        // Order Tracking Routes
+        app.get("/orders", orderTrackingController::viewOrders);
 
         // Admin Routes
         app.get("/admin", adminController::dashboard);
